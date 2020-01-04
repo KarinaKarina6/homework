@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>***Название блога***</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <h1>Блог мечты</h1>
+    <!-- тут должен быть список статей блога -->
+
+    {%for article in articles%}
+     Название статьи: <a href="/entry/{{article['key']}}">{{article['title']}}</a><br>
+     Дата создания: {{article['created_at'].strftime("%Y-%m-%d")}}<br>
+     Время создания: {{article['created_at'].strftime("%H:%M:%S")}}<br>
+    {% if article['comments']%}
+     Количество комментариев:    {{ article['comments']|length}}<br>
+    {% else %}
+    {{'Нет комментариев'}}<br>
+    {% endif %}
+    ____________________________________________________________________________<br>
+    {% endfor %}
+
+    <a class="btn btn-outline-primary" href="{{ url_for('create_entry_page') }}">Добавить новую статью</a>
+</div>
+</body>
+</html>
