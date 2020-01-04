@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>***Название статьи*** - ***Название блога***</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<!-- тут должна быть статья и комментарии к статье -->
+<h2>{{article['title']}}</h2>
+<p>{{article['text']}}</p>
+<h5>Комментарии к статье:</h5>
+<div>{% for comment in article['comments'] %}
+        <h6>{{ comment['name']}}</h6>
+    {{ comment['text']}}<br><br>
+    {% endfor %}
+<br>
+    Добавить комментарий:
+<form action="" method="post">
+    Автор:<input type="text" name="name"><br><br>
+    Текст:<input type="text" name="text"><br><br>
+    <button type="submit">Отправить комментарий</button>
+</form>
+</div>
+
+
+</body>
+</html>
