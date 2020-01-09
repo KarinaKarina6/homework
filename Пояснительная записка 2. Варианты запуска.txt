@@ -1,0 +1,38 @@
+Создание базы:
+
+1) python MyProject.py createbd
+
+2) python MyProject.py createbd --pages=5
+
+
+Запросить информацию о временных промежутках имеющихся данных:
+
+1)python MyProject.py inform
+
+
+Парсинг:
+
+1)python MyProject.py parsstor --fromday=2 --frommonth=января --fromyear=2020 --today=4 --tomonth=января --toyear=2020 
+
+
+Получить данные из базы:
+
+1)python MyProject.py getdata
+
+
+Запить csv:
+
+1) python MyProject.py csv --fromday=6 --frommonth=января --fromyear=2020 --today=7 --tomonth=января --toyear=2020 --group=True
+
+2)python MyProject.py csv --fromday=6 --frommonth=января --fromyear=2020 --today=7 --tomonth=января --toyear=2020
+
+3) python MyProject.py csv
+
+4) python MyProject.py csv --group=True
+
+
+Вывод графика:
+
+1) python MyProject.py plot --fromday=6 --frommonth=января --fromyear=2020 --today=7 --tomonth=января --toyear=2020 10
+
+2) python MyProject.py plot 5
