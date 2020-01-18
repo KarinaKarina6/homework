@@ -2,6 +2,7 @@ from ProjectPlot import *
 from ProjectCsv import *
 from ProjectParser import *
 from ProjectStorage import *
+from pr import *
 import click
 
 @click.group()
@@ -47,14 +48,16 @@ def getdata():
 @click.option('--todate',default="0",help='По какую дату парсить статьи. Формат ввода YYYY-MM-DD')
 def parsstor(fromdate, todate):
     try:
-        if fromdate != "0" and todate != "0":
-            pars = Parser()
-            pars.parserandstorage(fromdate, todate)
-            click.echo('В базу добавлены данные по тегам' + " c " + conv(fromdate) + " по " + conv(todate))
-        else:
-            click.echo('Укажите границы')
+        form(fromdate)
+        form(todate)
+        pars = Parser()
+        pars.parserandstorage(fromdate, todate)
+        click.echo('В базу добавлены данные по тегам' + " c " + conv(fromdate) + " по " + conv(todate))
+    except ValueError:
+        click.echo('Введите даты в правильном формате YYYY-MM-DD')
     except Exception as ex:
         click.echo(ex)
+
 
 @cli.command()
 @click.option('--fromdate',default="0",help='С какой даты учитывать данные для гистограммы. Формат ввода YYYY-MM-DD')
@@ -62,6 +65,8 @@ def parsstor(fromdate, todate):
 @click.argument('count')
 def plot(count,fromdate,todate):
     try:
+        form(fromdate)
+        form(todate)
         d = DataStorage()
         if fromdate != "0" and todate != "0":
             data = d.datalimit(fromdate, todate)
@@ -75,6 +80,8 @@ def plot(count,fromdate,todate):
         else:
             p = plot.barchart()
         click.echo(p)
+    except ValueError:
+        click.echo('Введите даты в правильном формате YYYY-MM-DD')
     except Exception as ex:
         click.echo(ex)
 
@@ -86,6 +93,8 @@ def plot(count,fromdate,todate):
 @click.option('--group', is_flag=False,help='Группировать ли данные. Формат ввода True/False')
 def csv(group,fromdate,todate):
     try:
+        form(fromdate)
+        form(todate)
         d = DataStorage()
         data = d.get_data()
         if fromdate != "0" and todate != "0":
@@ -103,6 +112,8 @@ def csv(group,fromdate,todate):
         else:
             csv.write(data, "DATA" + "group" + str(group) + ".csv")
         click.echo("csv файл создан")
+    except ValueError:
+        click.echo('Введите даты в правильном формате YYYY-MM-DD')
     except Exception as ex:
         click.echo(ex)
 
@@ -110,4 +121,3 @@ def csv(group,fromdate,todate):
 
 if __name__ == '__main__':
     cli()
-
