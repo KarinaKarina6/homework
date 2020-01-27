@@ -1,0 +1,39 @@
+Создание базы:
+
+1) python MyProject.py createbd
+
+2) python MyProject.py createbd --pages=5
+
+
+Запросить информацию о временных промежутках имеющихся данных:
+
+1)python MyProject.py inform
+
+
+Парсинг:
+
+1)python MyProject.py parsstor --fromdate=2020-01-13 --todate=2020-01-15
+
+
+Получить данные из базы:
+
+1)python MyProject.py getdata
+
+
+Запить csv:
+
+1) python MyProject.py csv --fromdate=2020-01-14 --todate=2020-01-16 --group=True
+
+2) python MyProject.py csv --fromdate=2020-01-14 --todate=2020-01-16
+
+3) python MyProject.py csv
+
+4) python MyProject.py csv --group=True
+
+
+
+Вывод графика:
+
+1) python MyProject.py plot --fromdate=2020-01-14 --todate=2020-01-16 10
+
+2) python MyProject.py plot 5
